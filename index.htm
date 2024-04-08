@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla periódica</title>
+    <style>
+        /* Este diseño es claramente mejor hacerlo con Grid, sobre todo
+        por los espacios que hay que dejar en las filas 1 y 2 en medio.
+        Como no hemos añadido todos los símbolos químicos, al empequeñecer
+        la ventana, estos quedarán más pequeños (también del alto pues vamos a 
+        usar la propiedad aspect-ratio: 1 en las cajas). Lo vamos a dejar así pues
+        sería cuestión de rellenar el HTML con ellos. Otra opción sería darles
+        un ancho y alto fijos a todos */
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 100%;
+        }
+        .tablaPeriodica {
+            display: grid;
+            /* Hay 18 columnas todas usando el mismo espacio sobrante */
+            /* Como vamos a usar más adelante aspect-ratio para que las cajas de los símbolos
+            tengan el mismo ancho que alto, debemos indicar las filas; de no hacerlo cada símbolo
+            ocuparía toda la pantalla */
+            grid-template-columns: repeat(18, 1fr);
+            /* No sería necesario indicar el número de filas, pues Grid ya añade
+            las que hagan falta */
+            grid-template-rows: repeat(17, 1fr);
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: 0.7rem;
+        }
+        .tablaPeriodica div p{
+            margin: 5px;
+        }
+        .tablaPeriodica div p:nth-child(1) {
+            text-align: right;
+        }
+        .tablaPeriodica div p:nth-child(2) {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .tablaPeriodica div {
+            border: 1px solid black;
+            /* Para que las cajas tengan el mismo ancho que alto */
+            aspect-ratio: 1;
+        }
+        /* Para este estilo y todos los demás, sería más sencillo
+        crear clases */
+        /* El helio debe ir en la última columna */
+        .tablaPeriodica div:nth-child(2) {
+            grid-column: 18; 
+        }
+        /* El boro y el alumnio deben ir en la columna 13 */
+        .tablaPeriodica div:nth-child(5), .tablaPeriodica div:nth-child(13) {
+            grid-column: 13;
+        }
+        /*
+        - .tablaPeriodica div:nth-child(1) para el primer elemento
+        - .tablaPeriodica div:nth-child(15) para el elemento 15
+        - .tablaPeriodica div:nth-child(16) para el elemento 16
+        - .tablaPeriodica div:nth-child(n+6):nth-child(-n+8) para el 6 en adelante y luego lo limitamos del 8 hacia atrás, con lo 
+        que coge 6, 7 y 8 */
+        .tablaPeriodica div:nth-child(1), .tablaPeriodica div:nth-child(n+6):nth-child(-n+8), .tablaPeriodica div:nth-child(15), .tablaPeriodica div:nth-child(16) {
+            background-color: rgb(205, 166, 242);
+        }
+        /* A partir de aquí lo mismo para los colores para otros elementos */
+        .tablaPeriodica div:nth-child(2), .tablaPeriodica div:nth-child(10), .tablaPeriodica div:nth-child(18) {
+            background-color: rgb(117, 231, 241);
+        }
+        .tablaPeriodica div:nth-child(3), .tablaPeriodica div:nth-child(11), .tablaPeriodica div:nth-child(19) {
+            background-color: rgb(244, 169, 65);
+        }
+        .tablaPeriodica div:nth-child(4), .tablaPeriodica div:nth-child(12), .tablaPeriodica div:nth-child(20) {
+            background-color: rgb(244, 208, 156);
+        }
+        .tablaPeriodica div:nth-child(5), .tablaPeriodica div:nth-child(14) {
+            background-color: rgb(187, 244, 156);
+        }
+        .tablaPeriodica div:nth-child(13), .tablaPeriodica div:nth-child(31) {
+            background-color: rgb(245, 239, 174);
+        }
+        .tablaPeriodica div:nth-child(9), .tablaPeriodica div:nth-child(17) {
+            background-color: rgb(245, 174, 207);
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="tablaPeriodica">
+            <div>
+                <p>1</p>
+                <p>H</p>
+                <p>Hidrógeno</p>
+            </div>
+            <div>
+                <p>2</p>
+                <p>He</p>
+                <p>Helio</p>
+            </div>
+            <div>
+                <p>3</p>
+                <p>Li</p>
+                <p>Litio</p>
+            </div>
+            <div>
+                <p>4</p>
+                <p>Be</p>
+                <p>Berilio</p>
+            </div>
+            <div>
+                <p>5</p>
+                <p>B</p>
+                <p>Boro</p>
+            </div>
+            <div>
+                <p>6</p>
+                <p>C</p>
+                <p>Carbono</p>
+            </div>
+            <div>
+                <p>7</p>
+                <p>N</p>
+                <p>Nitrógeno</p>
+            </div>
+            <div>
+                <p>8</p>
+                <p>O</p>
+                <p>Oxígeno</p>
+            </div>
+            <div>
+                <p>9</p>
+                <p>F</p>
+                <p>Flúor</p>
+            </div>
+            <div>
+                <p>10</p>
+                <p>Ne</p>
+                <p>Neón</p>
+            </div>
+            <div>
+                <p>11</p>
+                <p>Na</p>
+                <p>Sodio</p>
+            </div>
+            <div>
+                <p>12</p>
+                <p>Mg</p>
+                <p>Magnesio</p>
+            </div>
+            <div>
+                <p>13</p>
+                <p>Al</p>
+                <p>Aluminio</p>
+            </div>
+            <div>
+                <p>14</p>
+                <p>Si</p>
+                <p>Silicio</p>
+            </div>
+            <div>
+                <p>15</p>
+                <p>P</p>
+                <p>Fósforo</p>
+            </div>
+            <div>
+                <p>16</p>
+                <p>S</p>
+                <p>Azufre</p>
+            </div>
+            <div>
+                <p>17</p>
+                <p>Cl</p>
+                <p>Cloro</p>
+            </div>
+            <div>
+                <p>18</p>
+                <p>Ar</p>
+                <p>Argón</p>
+            </div>
+            <div>E 19</div>
+            <div>E 20</div>
+            <div>E 21</div>
+            <div>E 22</div>
+            <div>E 23</div>
+            <div>E 24</div>
+            <div>E 25</div>
+            <div>E 26</div>
+            <div>E 27</div>
+            <div>E 28</div>
+            <div>E 29</div>
+            <div>E 30</div>
+            <div>E 31</div>
+            <div>E 32</div>
+            <div>E 33</div>
+            <div>E 34</div>
+            <div>E 35</div>
+            <div>E 36</div>
+            <div>E 37</div>
+            <div>E 38</div>
+            <div>E 39</div>
+            <div>E 40</div>
+            <div>E 41</div>
+            <div>E 42</div>
+            <div>E 43</div>
+            <div>E 44</div>
+            <div>E 45</div>
+            <div>E 46</div>
+            <div>E 47</div>
+            <div>E 48</div>
+            <div>E 49</div>
+            <div>E 50</div>
+            <div>E 51</div>
+            <div>E 52</div>
+            <div>E 53</div>
+            <div>E 54</div>
+            <div>E 55</div>
+            <div>E 56</div>
+            <div>E 57</div>
+            <div>E 58</div>
+            <div>E 59</div>
+            <div>E 60</div>
+            <div>E 61</div>
+            <div>E 62</div>
+            <div>E 63</div>
+            <div>E 64</div>
+            <div>E 65</div>
+            <div>E 66</div>
+            <div>E 67</div>
+            <div>E 68</div>
+            <div>E 69</div>
+            <div>E 70</div>
+            <div>E 71</div>
+            <div>E 72</div>
+            <div>E 73</div>
+            <div>E 74</div>
+            <div>E 75</div>
+            <div>E 76</div>
+            <div>E 77</div>
+            <div>E 78</div>
+            <div>E 79</div>
+            <div>E 80</div>
+            <div>E 81</div>
+            <div>E 82</div>
+            <div>E 83</div>
+            <div>E 84</div>
+            <div>E 85</div>
+            <div>E 86</div>
+            <div>E 87</div>
+            <div>E 88</div>
+            <div>E 89</div>
+            <div>E 90</div>
+            <div>E 91</div>
+            <div>E 92</div>
+            <div>E 93</div>
+            <div>E 94</div>
+            <div>E 95</div>
+            <div>E 96</div>
+            <div>E 97</div>
+            <div>E 98</div>
+            <div>E 99</div>
+            <div>E 100</div>
+            <div>E 101</div>
+            <div>E 102</div>
+            <div>E 103</div>
+            <div>E 104</div>
+            <div>E 105</div>
+            <div>E 106</div>
+            <div>E 107</div>
+            <div>E 108</div>
+            <div>E 109</div>
+            <div>E 110</div>
+            <div>E 111</div>
+            <div>E 112</div>
+            <div>E 113</div>
+            <div>E 114</div>
+            <div>E 115</div>
+            <div>E 116</div>
+            <div>E 117</div>
+            <div>E 118</div>
+            <div>E 119</div>
+            <div>E 120</div>
+            <div>E 121</div>
+            <div>E 122</div>
+            <div>E 123</div>
+            <div>E 124</div>
+            <div>E 125</div>
+            <div>E 126</div>
+    </div>
+    </main>
+    
+</body>
+</html>
